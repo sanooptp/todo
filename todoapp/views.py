@@ -93,3 +93,27 @@ class TodoListView(generics.ListAPIView):
 
         modified_data =  {"status": "Success", "user": user, "data": data}
         return modified_data
+
+    
+class TodoListByoneView(generics.ListAPIView):
+    serializer_class = TodoSerializer
+    permission_classed = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Todo.objects.filter(user=self.request.user)
+        return queryset
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        if not queryset.exists():
+            return Response({'message': 'No items available'})
+        serializer = self.get_serializer(queryset, many=True)
+        modified_data = self.modify_response_data(serializer.data)
+        return Response(modified_data)
+    
+    def modify_response_data(self, data):
+        m_data = []
+        for item in data:
+            m_data.append({"name": item["name"], "created_time": item["created_time"], "priority": item["priortiy"]})
+        modified_data =  {"data": m_data}
+        return modified_data
