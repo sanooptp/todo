@@ -11,5 +11,5 @@ class TodoSerializer(serializers.ModelSerializer):
 class TodoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
-        fields = ["todo_detail","priority"]
+        fields = ["name","priority"]
     
