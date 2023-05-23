@@ -25,7 +25,7 @@ class TodoCreateView(generics.CreateAPIView):
     def modify_response(self, data):
         modified_data = {
             'message': 'Item created successfully',
-            'data': data,
+            'items': data,
         }
         return modified_data
 
@@ -90,6 +90,6 @@ class TodoListView(generics.ListAPIView):
     
     def modify_response_data(self, data):
         user = self.request.user.username
-        
+
         modified_data =  {"status": "Success", "user": user, "data": data}
         return modified_data

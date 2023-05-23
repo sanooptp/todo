@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Todo(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    todo_detail = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     created_time = models.DateTimeField(blank=False)
     priority = models.IntegerField(default=1, validators=[MaxValueValidator(10), MinValueValidator(1)]
      )
