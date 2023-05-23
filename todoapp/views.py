@@ -90,5 +90,6 @@ class TodoListView(generics.ListAPIView):
     
     def modify_response_data(self, data):
         user = self.request.user.username
+        
         modified_data =  {"status": "Success", "user": user, "data": data}
         return modified_data
