@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'todoapp',
     'userprofile',
     'rest_framework',
+    'sslserver',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
